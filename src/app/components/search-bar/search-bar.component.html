@@ -1,0 +1,18 @@
+<div class="ck_list_component">
+    <header class="ck_list_header">
+      <div class="ck_list_header_search">
+          <form class="example-form ck_list_header_search_input" >
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Search Pokemon</mat-label>
+                <input type="text"
+                matInput
+                aria-label="Number"
+                [formControl]="searchControl"
+                (input)="onSearchPokemon()"
+                >
+                  <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+            </form> 
+      </div>
+    </header>
+  </div>

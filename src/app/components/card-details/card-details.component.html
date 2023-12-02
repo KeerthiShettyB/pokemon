@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row justify-content-center" *ngIf="isLoading">
+        <div class="col-4 mt-4">
+            <span>Loading.... please wait!!</span>
+        </div>
+    </div>
+    <div *ngIf="!isSearching" class="row pokemon__list" (scroll)="onScroll($event)">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4" *ngFor="let pokemon of pokemons" (click)="navigateToDetail(pokemon)">
+            <div class="card">
+                <div class="card__info">
+                    <h2 class="color-white">{{pokemon.name}}</h2>
+                    <mat-chip-listbox *ngFor="let type of pokemon.types">
+                        <mat-chip-option  >{{type.type.name}}</mat-chip-option>
+                    </mat-chip-listbox>
+                </div>
+                <div class="card__img" *ngIf="pokemon.id">
+                    <img loading="lazy" src="https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/{{pokemon.id}}.svg" [alt]="pokemon.name">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isSearching" class="pokemon__list" (scroll)="onScroll($event)">
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+            <div class="card {{'bg-color-' + getPrincipalType(searchPokemon.types) + '-light'}}" (click)="navigateToDetail(searchPokemon)">
+                <div class="card__info">
+                    <h2 class="color-white">{{searchPokemon.name}}</h2>
+                    <mat-chip-listbox *ngFor="let type of searchPokemon.types">
+                        <mat-chip-option>{{type.type.name}}</mat-chip-option>
+                    </mat-chip-listbox>
+                </div>
+                <div class="card__img" *ngIf="searchPokemon.id">
+                    <img loading="lazy"  src="https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/{{searchPokemon.id}}.svg" [alt]="searchPokemon.name">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
